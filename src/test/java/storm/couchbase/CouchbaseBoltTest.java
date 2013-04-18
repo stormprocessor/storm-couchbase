@@ -10,7 +10,7 @@ import java.util.LinkedList;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Michael Holt
+ * Author: Michael Holt <ilion @ sin-inc.net>
  * Date: 1/25/13
  * Time: 10:26 PM
  */
@@ -22,22 +22,22 @@ public class CouchbaseBoltTest  {
     private CouchbaseBolt testCouchBolt = new CouchbaseBolt(uris, fakeBucket, fakePassword) {
         @Override
         public boolean shouldActOnInput(Tuple input) {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
+            return false;
         }
 
         @Override
         public String getJSONForInput(Tuple input) {
-            return null;  //To change body of implemented methods use File | Settings | File Templates.
+            return null;
         }
 
         @Override
         public String getKey(Tuple input) {
-            return null;  //To change body of implemented methods use File | Settings | File Templates.
+            return null;
         }
 
         @Override
         public void declareOutputFields(OutputFieldsDeclarer outputFieldsDeclarer) {
-            //To change body of implemented methods use File | Settings | File Templates.
+            // No point in declaring this right now
         }
     };
 

@@ -2,14 +2,14 @@ package storm.couchbase;
 
 /**
  * Created with IntelliJ IDEA.
- * User: Michael Holt
+ * Author: Michael Holt <ilion @ sin-inc.net>
  * Date: 1/25/13
  * Time: 10:23 PM
  */
 
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.IRichBolt;
+import backtype.storm.topology.base.BaseRichBolt;
 import backtype.storm.tuple.Tuple;
 import com.couchbase.client.CouchbaseClient;
 import net.spy.memcached.internal.OperationFuture;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-public abstract class CouchbaseBolt implements IRichBolt {
+public abstract class CouchbaseBolt extends BaseRichBolt {
 
     private OutputCollector collector;
     private CouchbaseClient client;
@@ -32,7 +32,7 @@ public abstract class CouchbaseBolt implements IRichBolt {
     private final String bucket;
     private final String password;
 
-    protected CouchbaseBolt(LinkedList uris, String bucket, String password) throws RuntimeException {
+    protected CouchbaseBolt(LinkedList<URI> uris, String bucket, String password) throws RuntimeException {
         try
         {
             this.uris.addAll(uris);
@@ -70,7 +70,7 @@ public abstract class CouchbaseBolt implements IRichBolt {
             String jsonInput = getJSONForInput(input);
             OperationFuture<Boolean> setOp = client.set(key, this.expireTime, jsonInput);
             try {
-                if (setOp.get().booleanValue())
+                if (setOp.get())
                 {
                     this.collector.ack(input);
                 }

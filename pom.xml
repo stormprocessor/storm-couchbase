@@ -8,6 +8,10 @@
     <artifactId>storm-couchbase</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>jar</packaging>
+    <name>storm-couchbase</name>
+    <description>Allows the creation of Couchbase Bolts in Storm</description>
+
     <repositories>
         <repository>
             <id>couchbase</id>
@@ -18,20 +22,24 @@
                 <enabled>false</enabled>
             </snapshots>
         </repository>
+        <repository>
+            <id>clojars.org</id>
+            <url>http://clojars.org/repo</url>
+        </repository>
     </repositories>
 
     <dependencies>
         <dependency>
             <groupId>storm</groupId>
             <artifactId>storm</artifactId>
-            <version>0.6.1</version>
+            <version>0.8.2</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>couchbase</groupId>
             <artifactId>couchbase-client</artifactId>
             <version>1.1.0</version>
-            <scope>provided</scope>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -43,6 +51,12 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>1.9.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
